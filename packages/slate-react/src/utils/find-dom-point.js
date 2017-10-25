@@ -1,4 +1,3 @@
-
 import getWindow from 'get-window'
 
 import findDOMNode from './find-dom-node'
@@ -12,18 +11,18 @@ import findDOMNode from './find-dom-node'
  * @return {Object}
  */
 
-function findDOMPoint(key, offset) {
+function findDOMPoint( key, offset ) {
   const el = findDOMNode(key)
   const window = getWindow(el)
-  const iterator = window.document.createNodeIterator(el, NodeFilter.SHOW_TEXT)
+  const iterator = window.document.createNodeIterator(el,NodeFilter.SHOW_TEXT,() => NodeFilter.FILTER_ACCEPT,false);
   let start = 0
   let n
 
-  while (n = iterator.nextNode()) {
+  while ( n = iterator.nextNode() ) {
     const { length } = n.textContent
     const end = start + length
 
-    if (offset <= end) {
+    if ( offset <= end ) {
       const o = offset - start
       return { node: n, offset: o }
     }
@@ -35,10 +34,10 @@ function findDOMPoint(key, offset) {
   // rendered a `<br/>` instead of a text node.
   if (
     el.childNodes.length == 1 &&
-    el.childNodes[0].childNodes.length == 1 &&
-    el.childNodes[0].childNodes[0].tagName == 'BR'
+    el.childNodes[ 0 ].childNodes.length == 1 &&
+    el.childNodes[ 0 ].childNodes[ 0 ].tagName == 'BR'
   ) {
-    return { node: el.childNodes[0], offset: 0 }
+    return { node: el.childNodes[ 0 ], offset: 0 }
   }
 
   return null
