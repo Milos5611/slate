@@ -12,7 +12,7 @@
   ],
   "pluginsConfig": {
     "github": {
-      "url": "https://github.com/ianstormtaylor/slate"
+      "url": "git@github.com:Milos5611/slate"
     }
   }
 }

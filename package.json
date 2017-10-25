@@ -1,6 +1,6 @@
 {
-  "private": true,
-  "name": "slate-packages",
+  "version": "1.0.0",
+  "name": "ml-rch",
   "workspaces": [
     "packages/*"
   ],
